@@ -1,0 +1,19 @@
+version: 0.1.0.{build}
+image: Visual Studio 2017
+environment:
+  matrix:
+    - BUILD_SHARED_LIBS: OFF
+    - BUILD_SHARED_LIBS: ON
+configuration: Release
+platform:
+  - Win32
+  - x64
+init:
+  - if %platform%==x64 set CMAKE_GENERATOR_PLATFORM=x64
+before_build:
+  - mkdir build
+  - cd build
+  - cmake .. -G"Visual Studio 15 2017" -DCMAKE_GENERATOR_PLATFORM=%CMAKE_GENERATOR_PLATFORM% -DBUILD_SHARED_LIBS=%BUILD_SHARED_LIBS%
+build_script:
+  - cmake --build . --config %configuration%
+  - cpack -G ZIP
