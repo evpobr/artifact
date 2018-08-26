@@ -1,0 +1,19 @@
+dist: trusty_latest
+group: edge
+sudo: false
+language: c
+compiler:
+  - gcc
+  - clang
+os:
+  - linux
+  - osx
+matrix:
+  exclude:
+    - os: osx
+      compiler: clang
+script:
+  - mkdir build
+  - cd build
+  - cmake .. -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=ON -DCMAKE_C_FLAGS="-Wall -Wextra"
+  - cmake --build .
