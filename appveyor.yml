@@ -1,9 +1,5 @@
 version: 0.2.0.{build}
 image: Visual Studio 2017
-environment:
-  matrix:
-    - BUILD_SHARED_LIBS: OFF
-    - BUILD_SHARED_LIBS: ON
 configuration: Release
 platform:
   - Win32
@@ -13,11 +9,10 @@ init:
 before_build:
   - mkdir build-%PLATFORM%
   - cd build-%PLATFORM%
-  - cmake .. -G"Visual Studio 15 2017" -DCMAKE_GENERATOR_PLATFORM=%CMAKE_GENERATOR_PLATFORM% -DBUILD_SHARED_LIBS=%BUILD_SHARED_LIBS%
+  - cmake .. -G"Visual Studio 15 2017" -DCMAKE_GENERATOR_PLATFORM=%CMAKE_GENERATOR_PLATFORM% -DBUILD_SHARED_LIBS=ON
 build_script:
   - cmake --build . --config %configuration%
   - cpack -G ZIP
-  - if %BUILD_SHARED_LIBS%==OFF del /Q *.zip
 artifacts:
   - path: build-%PLATFORM%\*.zip
     name: library
@@ -26,9 +21,6 @@ deploy:
   provider: GitHub
   auth_token:
     secure: TvbsyEHHE9ccCWNNLZvD/c0OCSynEWNX3HFDXPcDw42bsXAu11tFfpjpF+DsSkh+
-  artifact: /.*\.zip/
+  artifact: library
   draft: false
   prerelease: false
-  on:
-    branch: master
-    appveyor_repo_tag: true
