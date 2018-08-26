@@ -18,7 +18,7 @@ build_script:
   - cmake --build . --config %configuration%
   - cpack -G ZIP
 artifacts:
-  - path: build-%PLATFORM%/artifact-v$(appveyor_build_version)-*.zip
+  - path: artifact-v$(appveyor_build_version)-*.zip
     name: library
 deploy:
   release: myproduct-v$(appveyor_build_version)
