@@ -25,6 +25,5 @@ deploy:
   draft: false
   prerelease: false
   on:
-    repo: vpobr/artifact
     tags: true
     all_branches: true
