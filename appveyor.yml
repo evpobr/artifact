@@ -17,11 +17,12 @@ before_build:
 build_script:
   - cmake --build . --config %configuration%
   - cpack -G ZIP
+  - if %BUILD_SHARED_LIBS%==OFF del /Q *.zip
 artifacts:
   - path: build-%PLATFORM%\*.zip
     name: library
 deploy:
-  release: myproduct-v$(appveyor_build_version)
+  release: v$(appveyor_build_version)
   description: 'Stable'
   provider: GitHub
   auth_token:
