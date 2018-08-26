@@ -1,5 +1,6 @@
 dist: trusty_latest
 group: edge
+sudo: false
 language: c
 compiler:
   - gcc
