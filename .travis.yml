@@ -1,11 +1,16 @@
-dist: trusty
+dist: trusty_latest
 group: edge
 language: c
+compiler:
+  - gcc
+  - clang
+os:
+  - linux
+  - osx
 matrix:
   exclude:
     - os: osx
       compiler: clang
-
 script:
   - mkdir build
   - cd build
