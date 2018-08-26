@@ -22,7 +22,6 @@ artifacts:
   - path: build-%PLATFORM%\*.zip
     name: library
 deploy:
-  release: v$(appveyor_build_version)
   description: 'Stable'
   provider: GitHub
   auth_token:
