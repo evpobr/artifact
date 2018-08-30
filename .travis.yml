@@ -1,6 +1,5 @@
-dist: trusty
+dist: xenial
 group: travis_latest
-sudo: true
 language: c
 compiler:
   - gcc
@@ -12,8 +11,6 @@ matrix:
   exclude:
     - os: osx
       compiler: clang
-before_install:
-  - sudo apt-get update -qq
 script:
   - cmake --version
   - mkdir build
