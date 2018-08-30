@@ -12,6 +12,8 @@ matrix:
   exclude:
     - os: osx
       compiler: clang
+before_install:
+  - sudo apt-get update -qq
 script:
   - cmake --version
   - mkdir build
