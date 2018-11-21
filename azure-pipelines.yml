@@ -9,3 +9,6 @@ jobs:
       inputs:
         workingDirectory: 'build'
         cmakeArgs: '-DBUILD_SHARED_LIBS=ON ..'
+    - script: |
+        cd build
+        cmake --build .
