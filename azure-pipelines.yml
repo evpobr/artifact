@@ -1,5 +1,5 @@
 jobs:
-  - job: Ubuntu_16.04_CMake
+  - job: Ubuntu_CMake
     pool:
       vmImage: 'Ubuntu-16.04'
     steps:
