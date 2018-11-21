@@ -3,4 +3,7 @@ jobs:
     pool:
       vmImage: 'Ubuntu-16.04'
     steps:
+    - script: |
+        mkdir build
     - task: CMake@1
+      workingDirectory: 'build'
