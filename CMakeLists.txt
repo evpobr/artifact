@@ -43,14 +43,14 @@ install(TARGETS Artifact
   PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/artifact
 )
 if(WIN32)
-    set(CMAKE_INSTALL_PACKAGEDIR cmake)
+  set(CMAKE_INSTALL_PACKAGEDIR cmake)
 else()
-    set(CMAKE_INSTALL_PACKAGEDIR ${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME})
+  set(CMAKE_INSTALL_PACKAGEDIR ${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME})
 endif()
 install(
-    EXPORT ArtifactConfig
-    NAMESPACE Artifact::
-    DESTINATION ${CMAKE_INSTALL_PACKAGEDIR}
+  EXPORT ArtifactConfig
+  NAMESPACE Artifact::
+  DESTINATION ${CMAKE_INSTALL_PACKAGEDIR}
 )
 write_basic_package_version_file(ArtifactConfigVersion.cmake
   VERSION ${PROJECT_VERSION}
