@@ -24,8 +24,8 @@ jobs:
       vmImage: Ubuntu-16.04
     steps:
     - script: |
-      sudo apt update
-      sudo apt install clang
+        sudo apt update
+        sudo apt install clang
       displayName: 'Install dependencies'
     - task: CMake@1
       displayName: 'CMake configure'
