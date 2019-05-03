@@ -7,15 +7,13 @@ jobs:
       matrix:
         x86-Debug:
           buildPlatform: 'Win32'
-          buildConfiguration: 'Release'
         x64-Release:
           buildPlatform: 'x64'
-          buildConfiguration: 'Release'
     steps:
     - task: CMake@1
       displayName: 'CMake configure'
       inputs:
-        cmakeArgs: '-G "Visual Studio 15 2017" -A $(buildPlatform) .. '
+        cmakeArgs: '-G "Visual Studio 15 2017" -A $(buildPlatform) -DCMAKE_BUILD_TYPE=Release .. '
     - task: CMake@1
       displayName: 'CMake build'
       inputs:
