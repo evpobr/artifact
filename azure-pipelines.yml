@@ -1,19 +1,22 @@
-strategy:
-  matrix:
-    linux:
-      imageName: 'ubuntu-16.04'
-    mac:
-      imageName: 'macos-10.13'
-    windows:
-      imageName: 'vs2017-win2016'
-
-pool:
-  vmImage: $(imageName)
-
-steps:
-- task: CMake@1
-  inputs:
-    cmakeArgs: '-DBUILD_SHARED_LIBS=ON ..'
-- task: CMake@1
-  inputs:
-    cmakeArgs: '--build .'
+jobs:
+  - job: windows
+  pool:
+    vmImage: vs2017-win2016
+  strategy:
+    maxParallel: 2
+    matrix:
+      x86-Debug:
+        buildPlatform: 'x86'
+        buildConfiguration: 'Release'
+      x64-Release:
+        buildPlatform: 'x64'
+        buildConfiguration: 'Release'
+  steps:
+  - task: CMake@1
+    displayName: 'CMake configure'
+    inputs:
+      cmakeArgs: '.. '
+  - task: CMake@1
+    displayName: 'CMake build'
+    inputs:
+      cmakeArgs: '--build .'
