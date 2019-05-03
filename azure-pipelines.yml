@@ -1,21 +1,23 @@
-jobs:
-  - job:
-    strategy:
-      matrix:
-        linux:
-          imageName: 'ubuntu-16.04'
-        mac:
-          imageName: 'macos-10.13'
-        windows:
-          imageName: 'vs2017-win2016'
+strategy:
+  matrix:
+    linux:
+      imageName: 'ubuntu-16.04'
+    mac:
+      imageName: 'macos-10.13'
+    windows:
+      imageName: 'vs2017-win2016'
 
-    steps:
-    - script: |
-        mkdir build
-    - task: CMake@1
-      inputs:
-        workingDirectory: 'build'
-        cmakeArgs: '-DBUILD_SHARED_LIBS=ON ..'
-    - script: |
-        cd build
-        cmake --build .
+pool:
+  vmImage: $(imageName)
+
+steps:
+- script: mkdir build
+  displayName: 'Create build directory'
+- task: CMake@1
+  inputs:
+    workingDirectory: 'build'
+    cmakeArgs: '-DBUILD_SHARED_LIBS=ON ..'
+- script: |
+    cd build
+    cmake --build .
+  displayName: 'Build'
