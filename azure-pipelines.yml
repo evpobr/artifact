@@ -19,4 +19,4 @@ jobs:
     - task: CMake@1
       displayName: 'CMake build'
       inputs:
-        cmakeArgs: '--build .'
+        cmakeArgs: '--build -c Release .'
