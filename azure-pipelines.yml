@@ -22,10 +22,20 @@ jobs:
   - job: linux
     pool:
       vmImage: Ubuntu-16.04
+    strategy:
+      maxParallel: 2
+      matrix:
+        GCC:
+          cCompiler: gcc
+          cxxCompiler: g++
+        Clang:
+          cCompiler: clang
+          cxxCompiler: clang++
     steps:
     - script: |
         sudo apt update
         sudo apt install clang
+      condition: eq(variables['cCompiler'], 'clang')
       displayName: 'Install dependencies'
     - script: 'mkdir build'
       displayName: 'Create build directory'
@@ -33,7 +43,7 @@ jobs:
       displayName: 'CMake configure'
       inputs:
         workingDirectory: 'build'
-        cmakeArgs: '-DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_BUILD_TYPE=Release ..'
+        cmakeArgs: '-DCMAKE_C_COMPILER=$(cCompiler) -DCMAKE_CXX_COMPILER=$(cxxCompiler) -DCMAKE_BUILD_TYPE=Release ..'
     - task: CMake@1
       displayName: 'CMake build'
       inputs:
