@@ -48,3 +48,16 @@ jobs:
       displayName: 'CMake build'
       inputs:
         cmakeArgs: '--build . --config Release'
+
+  - job: macOS
+    pool:
+      vmImage: UmacOS-10.14
+    - task: CMake@1
+      displayName: 'CMake configure'
+      inputs:
+        workingDirectory: 'build'
+        cmakeArgs: '-DCMAKE_BUILD_TYPE=Release ..'
+    - task: CMake@1
+      displayName: 'CMake build'
+      inputs:
+        cmakeArgs: '--build . --config Release'
