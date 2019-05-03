@@ -1,22 +1,22 @@
 jobs:
   - job: windows
-  pool:
-    vmImage: vs2017-win2016
-  strategy:
-    maxParallel: 2
-    matrix:
-      x86-Debug:
-        buildPlatform: 'x86'
-        buildConfiguration: 'Release'
-      x64-Release:
-        buildPlatform: 'x64'
-        buildConfiguration: 'Release'
-  steps:
-  - task: CMake@1
-    displayName: 'CMake configure'
-    inputs:
-      cmakeArgs: '.. '
-  - task: CMake@1
-    displayName: 'CMake build'
-    inputs:
-      cmakeArgs: '--build .'
+    pool:
+      vmImage: vs2017-win2016
+    strategy:
+      maxParallel: 2
+      matrix:
+        x86-Debug:
+          buildPlatform: 'x86'
+          buildConfiguration: 'Release'
+        x64-Release:
+          buildPlatform: 'x64'
+          buildConfiguration: 'Release'
+    steps:
+    - task: CMake@1
+      displayName: 'CMake configure'
+      inputs:
+        cmakeArgs: '.. '
+    - task: CMake@1
+      displayName: 'CMake build'
+      inputs:
+        cmakeArgs: '--build .'
