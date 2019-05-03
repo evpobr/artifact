@@ -17,4 +17,4 @@ jobs:
     - task: CMake@1
       displayName: 'CMake build'
       inputs:
-        cmakeArgs: '--build -c Release .'
+        cmakeArgs: '--build . --config Release'
