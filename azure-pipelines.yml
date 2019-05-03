@@ -5,9 +5,9 @@ jobs:
     strategy:
       maxParallel: 2
       matrix:
-        x86-Debug:
+        Win32:
           buildPlatform: 'Win32'
-        x64-Release:
+        x64:
           buildPlatform: 'x64'
     steps:
     - task: CMake@1
@@ -35,10 +35,8 @@ jobs:
     - script: |
         sudo apt update
         sudo apt install clang
-      condition: eq(variables['cCompiler'], 'clang')
       displayName: 'Install dependencies'
-    - script: 'mkdir build'
-      displayName: 'Create build directory'
+      condition: eq(variables['cCompiler'], 'clang')
     - task: CMake@1
       displayName: 'CMake configure'
       inputs:
