@@ -23,9 +23,6 @@ jobs:
     pool:
       vmImage: Ubuntu-16.04
     steps:
-    - script: |
-      aptitude install clang
-      displayName: 'CMake configure'
     - task: CMake@1
       displayName: 'CMake configure'
       inputs:
