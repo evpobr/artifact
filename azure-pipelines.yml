@@ -16,4 +16,4 @@ steps:
     cmakeArgs: '-DBUILD_SHARED_LIBS=ON ..'
 - task: CMake@1
   inputs:
-    cmakeArgs: '--build ..'
+    cmakeArgs: '--build .'
