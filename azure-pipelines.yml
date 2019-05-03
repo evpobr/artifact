@@ -27,6 +27,8 @@ jobs:
         sudo apt update
         sudo apt install clang
       displayName: 'Install dependencies'
+      - script: 'mkdir build'
+      displayName: 'Create build directory'
     - task: CMake@1
       displayName: 'CMake configure'
       inputs:
