@@ -1,5 +1,5 @@
 jobs:
-  - job: windows
+  - job: Windows
     pool:
       vmImage: vs2017-win2016
     strategy:
@@ -19,7 +19,7 @@ jobs:
       inputs:
         cmakeArgs: '--build . --config Release'
 
-  - job: linux
+  - job: Linux
     pool:
       vmImage: Ubuntu-16.04
     strategy:
@@ -52,6 +52,7 @@ jobs:
   - job: macOS
     pool:
       vmImage: UmacOS-10.14
+    steps:
     - task: CMake@1
       displayName: 'CMake configure'
       inputs:
