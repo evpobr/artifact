@@ -33,7 +33,7 @@ jobs:
       displayName: 'CMake configure'
       inputs:
         workingDirectory: 'build'
-        cmakeArgs: -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_BUILD_TYPE=Release ..'
+        cmakeArgs: '-DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_BUILD_TYPE=Release ..'
     - task: CMake@1
       displayName: 'CMake build'
       inputs:
